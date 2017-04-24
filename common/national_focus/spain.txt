@@ -20,12 +20,180 @@ focus_tree = {
 	default = no
 	reset_on_civilwar = no
 
+	#Spanish Industry improvement
+	focus = {
+		id = spr_spanish_infra
+		icon = GFX_goal_generic_construct_civilian
+		x = 1
+		y = 0
+		cost = 10
 
+		available_if_capitulated = yes
+
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+					}
+					is_on_continent = europe
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}	
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+					}
+					is_on_continent = europe
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}	
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 2
+					}
+					is_on_continent = europe
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}						
+		}
+	}
+
+	focus = {
+		id = spr_spanish_civ
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = spr_spanish_infra }
+		x = 0
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_on_continent = europe
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+					is_on_continent = europe
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}	
+
+	focus = {
+		id = spr_spanish_arms
+		icon = GFX_goal_generic_construct_mil_factory
+		prerequisite = { focus = spr_spanish_civ }
+		x = 0
+		y = 2
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_on_continent = europe
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+					is_on_continent = europe
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Science
+	focus = {
+		id = spr_science_focus
+		icon = GFX_focus_research
+		prerequisite = { focus = spr_northafrican_arms focus = spr_spanish_arms }
+
+		x = 2
+		y = 3
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}	
+
+
+	#african improvement tree
 	focus = {
 		id = spr_african_infra
 		icon = GFX_goal_generic_construct_civilian
-		x = 2
-		y = 0
+		prerequisite = { focus = spr_northafrican_arms focus = spr_spanish_arms }
+		x = 0
+		y = 3
 		cost = 10
 
 		available_if_capitulated = yes
@@ -229,67 +397,9 @@ focus_tree = {
 	}
 
 	focus = {
-		id = spr_northafrican_industry
+		id = spr_african_civ
 		icon = GFX_goal_generic_construct_civ_factory
-		prerequisite = { focus = spr_african_infra }
-		x = 0
-		y = 1
-		cost = 10
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			290 = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-					}
-			}
-			178 = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = spr_saharan_oil
-		icon = GFX_goal_generic_production
-		prerequisite = { focus = spr_northafrican_industry }
-		available = {
-			SPR = {
-				controls_state = 699
-			}
-		}
-		
-		x = 0
-		y = 2
-		cost = 10
-
-		available_if_capitulated = yes
-
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			add_resource = {
-				type = oil
-				amount = 6
-				state = 699
-			}
-		}
-	}
-
-	focus = {
-		id = spr_subsaharan_industry
-		icon = GFX_goal_generic_construction
-		prerequisite = { focus = spr_african_infra }
+		prerequisite = { focus =  spr_spanish_infra }
 		x = 2
 		y = 1
 		cost = 10
@@ -312,8 +422,19 @@ focus_tree = {
 					level = 1
 					instant_build = yes
 				}
+			}
+			290 = {
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = arms_factory
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+					}
+			}
+			178 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
 					level = 1
 					instant_build = yes
 				}
@@ -321,47 +442,12 @@ focus_tree = {
 		}
 	}	
 
-
-	focus = {
-		id = spr_guinean_oil
-		icon = GFX_goal_generic_oil_refinery
-		prerequisite = { focus = spr_subsaharan_industry }
-		available = {
-			SPR = {
-				controls_state = 297
-			}
-		}
-		
-		x = 2
-		y = 2
-		cost = 10
-
-		available_if_capitulated = yes
-
-		ai_will_do = {
-			factor = 1
-		}	
-		completion_reward = {
-			add_resource = {
-				type = oil
-				amount = 10
-				state = 297
-			}
-
-			add_resource = {
-				type = rubber
-				amount = 2
-				state = 297
-			}
-		}
-	}	
-
 	focus = {
 		id = spr_northafrican_arms
 		icon = GFX_goal_generic_construct_mil_factory
-		prerequisite = { focus = spr_african_infra }
-		x = 4
-		y = 1
+		prerequisite = { focus = spr_african_civ }
+		x = 2
+		y = 2
 		cost = 10
 
 		available_if_capitulated = yes
@@ -397,25 +483,84 @@ focus_tree = {
 					}
 				}
 				178 = {
-					add_extra_state_shared_building_slots = 2
+					add_extra_state_shared_building_slots = 1
 					add_building_construction = {
 						type = arms_factory
-						level = 2
+						level = 1
 						instant_build = yes
 					}
 				}			
 			}
 		}
-
 	}
 
+	focus = {
+		id = spr_guinean_oil
+		icon = GFX_goal_generic_oil_refinery
+		prerequisite = { focus = spr_saharan_oil }
+		available = {
+			SPR = {
+				controls_state = 297
+			}
+		}
+		
+		x = 0
+		y = 5
+		cost = 10
 
+		available_if_capitulated = yes
 
-	#military & Political focus
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 10
+				state = 297
+			}
+
+			add_resource = {
+				type = rubber
+				amount = 2
+				state = 297
+			}
+		}
+	}	
+
+	focus = {
+		id = spr_saharan_oil
+		icon = GFX_goal_generic_production
+		prerequisite = { focus = spr_african_infra }
+		available = {
+			SPR = {
+				controls_state = 699
+			}
+		}
+		
+		x = 0
+		y = 4
+		cost = 10
+
+		available_if_capitulated = yes
+
+		ai_will_do = {
+			factor = 1
+		}	
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 6
+				state = 699
+			}
+		}
+	}
+
+	#military improvement focus
 	focus = {
 		id = spr_rif_lessons
 		icon = GFX_goal_generic_army_artillery2
-		x = 6
+		x = 7
 		y = 0
 		cost = 10
 
@@ -443,7 +588,28 @@ focus_tree = {
 		id = spr_modernization_effort
 		icon = GFX_goal_generic_small_arms
 		prerequisite = { focus = spr_rif_lessons }
-		x = 6
+		x = 7
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+
+			add_tech_bonus = {
+				name = RAJ_army_motorization
+				bonus = 0.5
+				uses = 1
+				category = motorized_equipment
+			}
+		}
+	}
+
+	focus = {
+		id = spr_special_forces
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = spr_rif_lessons }
+		x = 5
 		y = 1
 		cost = 10
 
@@ -452,16 +618,13 @@ focus_tree = {
 		completion_reward = {
 			army_experience = 10
 			add_tech_bonus = {
-				name = RAJ_army_motorization
+				name = special_bonus
 				bonus = 0.5
 				uses = 1
-				category = motorized_equipment
-			}
-			add_tech_bonus = {
-				name = special_bonus
-				ahead_reduction = 1
-				uses = 1
+				technology = paratroopers
 				technology = tech_mountaineers2
+				technology = tech_engineers2
+				technology = tech_recon2
 			}
 		}
 	}
@@ -469,13 +632,13 @@ focus_tree = {
 	focus = {
 		id = spr_invite_germans
 		icon = GFX_goal_support_fascism
-		prerequisite = { focus = spr_modernization_effort }
+		prerequisite = { focus = spr_modernization_effort focus = spr_special_forces}
 		mutually_exclusive = { focus = spr_engage_soviets }
 		
 		available ={
 			has_government = fascism
 		}
-		x = 4
+		x = 5
 		y = 2
 		cost = 2
 
@@ -483,12 +646,6 @@ focus_tree = {
 
 		completion_reward = {
 			army_experience = 10
-			add_tech_bonus = {
-				name = land_doc_bonus
-				bonus = 0.5
-				uses = 1
-				category = land_doctrine
-			}
 			add_tech_bonus = {
 				name = op_dest_bonus
 				bonus = 0.5
@@ -502,13 +659,13 @@ focus_tree = {
 	focus = {
 		id = spr_engage_soviets
 		icon = GFX_goal_support_communism
-		prerequisite = { focus = spr_modernization_effort }
+		prerequisite = { focus = spr_modernization_effort focus = spr_special_forces }
 		mutually_exclusive = { focus = spr_invite_germans }
 
 		available ={
 			has_government = communism
 		}
-		x = 8
+		x = 7
 		y = 2
 		cost = 2
 
@@ -516,12 +673,6 @@ focus_tree = {
 		
 		completion_reward = {
 			army_experience = 10
-			add_tech_bonus = {
-				name = land_doc_bonus
-				bonus = 0.5
-				uses = 1
-				category = land_doctrine
-			}
 
 			add_tech_bonus = {
 				name = armor_bonus
@@ -533,20 +684,38 @@ focus_tree = {
 	}
 
 
-	#post-civil-war focus tree.
+#rewards for picking a side, civil war is happening or has happened.
 	focus = {
-		id = spr_cutting_edge
-		icon = GFX_goal_generic_army_tanks
-		prerequisite = { focus = spr_engage_soviets focus = spr_invite_germans }
-		x = 6
+		id = spr_tactical_advances
+		icon = GFX_goal_generic_position_armies
+		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets }
+		x = 8
 		y = 3
 		cost = 10
 
 		available_if_capitulated = no
 
 		completion_reward = {
-			air_experience = 25
-			army_experience = 10
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = spr_cutting_edge
+		icon = GFX_goal_generic_army_tanks
+		prerequisite = { focus = spr_army_industry }
+		prerequisite = { focus = spr_tactical_advances }
+		x = 7
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
 			add_tech_bonus = {
 				name = fighter_bonus
 				bonus = 0.5
@@ -569,87 +738,12 @@ focus_tree = {
 	}
 
 	focus = {
-		id = spr_heal_wounds
-		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = spr_cutting_edge }
-		available = {
-			NOT = { has_government = democratic }
-			has_war = no
-		}
-
-		x = 6
-		y = 4
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			#conscription = 0.005
-		}
-	}
-
-	#Armor Focus tree
-	focus = {
-		id = spr_armor_focus
-		icon = GFX_goal_generic_build_tank
-		prerequisite = { focus = spr_heal_wounds }
-		mutually_exclusive = { focus = spr_infantry_focus }
-		x = 7
-		y = 5
-		cost = 10
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-				add_ideas = FRA_motorized_focus
-		}
-	}
-
-	#Infantry focus
-	focus = {
-		id = spr_infantry_focus
-		icon = GFX_goal_generic_army_artillery
-		prerequisite = { focus = spr_heal_wounds }
-		mutually_exclusive = { focus = spr_armor_focus }
-		x = 5
-		y = 5
-		cost = 10
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_ideas = FRA_infantry_focus
-		}
-	}
-
-
-	#FASCISM focus
-	focus = {
-		id = spr_terror_white
-		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = spr_invite_germans }
-		x = 2
-		y = 3
-		cost = 10
-
-		available_if_capitulated = yes
-
-		complete_tooltip = {
-			add_ideas = SPA_white_terror
-		}
-
-		completion_reward = {
-			add_ideas = SPA_white_terror
-		}
-	}
-
-	focus = {
-		id = spr_german_scientists
+		id = spr_knowledge_sharing
 		icon = GFX_focus_research
-		prerequisite = { focus = spr_terror_white }
+		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets}
 
-		x = 2
-		y = 4
+		x = 4
+		y = 3
 		cost = 10
 
 		available_if_capitulated = no
@@ -659,70 +753,13 @@ focus_tree = {
 		}
 	}	
 	
-	#COMMUNISM focus
-	focus = {
-		id = spr_terror_red
-		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = spr_engage_soviets }
-		available = {has_war = yes}
-		x = 10
-		y = 3
-		cost = 10
 
-		available_if_capitulated = yes
-
-		complete_tooltip = {
-			add_ideas = SPR_red_terror
-		}
-
-		completion_reward = {
-			add_ideas = SPR_red_terror
-		}
-	}
-
-	focus = {
-		id = spr_soviet_science
-		icon = GFX_focus_research
-		prerequisite = { focus = spr_terror_red }
-
-		x = 10
-		y = 4
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}		
-
-	focus = {
-		id = spr_comm_portugal_war
-		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = spr_terror_red }
-		x = 10
-		y = 5
-		cost = 10
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			create_wargoal = {
-				type = take_state_focus
-				target = POR
-				generator = { 112 179 180 } # lisbon, porto, beja
-			}
-		}
-	}
-
-	#AIR/SEA & INDUSTRY
-	#AIR/LAND FOCUS
 	focus = {
 		id = spr_army_industry
 		icon = GFX_goal_generic_axis_build_infantry
-		mutually_exclusive = { focus = spr_new_armada }
-		x = 15
-		y = 0
+		prerequisite = { focus = spr_engage_soviets focus = spr_invite_germans}
+		x = 6
+		y = 3
 		cost = 10
 
 		available_if_capitulated = yes
@@ -808,11 +845,151 @@ focus_tree = {
 		}
 	}
 
+#AIR FOCUS
+	focus = {
+		id = spr_air_bases
+		icon = GFX_goal_generic_build_airforce
+	 	prerequisite = { focus = spr_rif_lessons }
+		x = 10
+		y = 1
+		cost = 10
+
+		available_if_capitulated = yes
+
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = air_focus_bypass_tt
+				NOT = {
+					any_owned_state = {
+						free_building_slots = {
+							building = air_base
+							size > 1
+						}
+					}
+				}
+			}
+		}
+
+		complete_tooltip = {
+			air_experience = 25
+			every_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = air_base
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = air_base
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = air_base
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = spr_air_doctrine
+		icon = GFX_goal_generic_air_bomber
+		prerequisite = { focus = spr_air_bases}
+		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets}
+		x = 10
+		y = 3
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+		air_experience = 25
+			add_tech_bonus = {
+				name = spr_air_doc
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}			
+		}
+	}
+	focus = {
+		id = spr_air_tech_fighter
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = spr_air_doctrine}
+		mutually_exclusive = {focus = spr_air_tech_bomber}
+		x = 9
+		y = 4
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = SPR_fighter_focus
+				bonus = 0.5
+				uses = 2
+				category = light_fighter
+			}			
+		}
+	}
+	focus = {
+		id = spr_air_tech_bomber
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = spr_air_doctrine }
+		mutually_exclusive = {focus = spr_air_tech_fighter}
+		x = 11
+		y = 4
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_focus
+				bonus = 0.5
+				uses = 2
+				category = tactical_bomber
+				category = cas_bomber
+			}			
+		}
+	}
+
 	#SEA FOCUS
 	focus = {
 		id = spr_new_armada
 		icon = GFX_goal_generic_build_navy
-		mutually_exclusive = { focus = spr_army_industry }
 		x = 17
 		y = 0
 		cost = 10
@@ -911,7 +1088,7 @@ focus_tree = {
 	focus = {
 		id = spr_naval_studies
 		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = spr_new_armada focus = spr_army_industry }
+		prerequisite = { focus = spr_new_armada }
 		x = 18
 		y = 1
 		cost = 10
@@ -923,153 +1100,15 @@ focus_tree = {
 		}
 	}	
 
-	focus = {
-		id = spr_air_tactics
-		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = spr_new_armada focus = spr_army_industry }
-		x = 14
-		y = 1
-		cost = 10
 
-		available_if_capitulated = no
-
-		completion_reward = {
-			#conscription = 0.005
-		}
-	}		
-
-	focus = {
-		id = spr_air_fighter_focus
-		icon = GFX_goal_generic_propaganda
-		prerequisite = { focus = spr_air_tactics }
-		x = 14
-		y = 1
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			#conscription = 0.005
-		}
-	}			
-
-	#improvement & science tree
-
-	focus = {
-		id = spr_industrialize_countryside
-		icon = GFX_goal_generic_construct_civ_factory
-		prerequisite = { focus = spr_new_armada focus = spr_army_industry }
-
-		x = 16
-		y = 1
-		cost = 10
-
-		available_if_capitulated = yes
-
-		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_on_continent = europe
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 1
-						include_locked = yes
-					}
-					is_on_continent = europe
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = industrial_complex
-					level = 2
-					instant_build = yes
-				}
-			}
-			if = {
-				limit = {
-					NOT = {
-						any_owned_state = {
-							free_building_slots = {
-								building = industrial_complex
-								size > 1
-								include_locked = yes
-							}
-							is_on_continent = europe
-						}
-					}
-				}
-				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							building = industrial_complex
-							size > 1
-							include_locked = yes
-						}
-					}
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-				}
-				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							building = industrial_complex
-							size > 1
-							include_locked = yes
-						}
-					}
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-				}				
-			}
-		}
-	}		
-
-
-	focus = {
-		id = spr_science_focus
-		icon = GFX_focus_research
-		prerequisite = { focus = spr_industrialize_countryside }
-
-		x = 16
-		y = 2
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_research_slot = 1
-		}
-	}		
-
+	#improvement & science tree	
 	focus = {
 		id = spr_nuclear_research
 		icon = GFX_focus_wonderweapons
 		prerequisite = { focus = spr_science_focus }
-
-		x = 16
-		y = 3
+		prerequisite = { focus = spr_knowledge_sharing }
+		x = 3
+		y = 5
 		cost = 10
 
 		available_if_capitulated = no
@@ -1084,5 +1123,67 @@ focus_tree = {
 			}
 		}
 	}		
+
+	#Political focus
+	focus = {
+		id = spr_heal_wounds
+		icon = GFX_goal_generic_propaganda
+		available = {
+			NOT = { has_government = democratic }
+			has_war = no
+		}
+
+		x = 20
+		y = 6
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			#conscription = 0.005
+		}
+	}
+
+	focus = {
+		id = spr_terror_red
+		icon = GFX_goal_generic_political_pressure
+		available ={
+			OR = { has_government = fascism
+				has_government = communism
+			}
+		}
+		x = 13
+		y = 0
+		cost = 10
+
+		available_if_capitulated = yes
+
+		complete_tooltip = {
+			add_ideas = SPR_red_terror
+		}
+
+		completion_reward = {
+			add_ideas = SPR_red_terror
+		}
+	}
+
+	focus = {
+		id = spr_comm_portugal_war
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = { focus = spr_terror_red }
+		x = 12
+		y = 7
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = POR
+				generator = { 112 179 180 } # lisbon, porto, beja
+			}
+		}
+	}
 
 }
