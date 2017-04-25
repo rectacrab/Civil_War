@@ -81,7 +81,7 @@ focus_tree = {
 		id = spr_spanish_civ
 		icon = GFX_goal_generic_construct_civ_factory
 		prerequisite = { focus = spr_spanish_infra }
-		x = 0
+		x = 2
 		y = 1
 		cost = 10
 
@@ -127,7 +127,7 @@ focus_tree = {
 		id = spr_spanish_arms
 		icon = GFX_goal_generic_construct_mil_factory
 		prerequisite = { focus = spr_spanish_civ }
-		x = 0
+		x = 2
 		y = 2
 		cost = 10
 
@@ -168,14 +168,58 @@ focus_tree = {
 			}
 		}
 	}
+	focus = {
+		id = spr_galacia_tungsten
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = spr_spanish_arms }
+		x = 2
+		y = 3
+		cost = 10
 
-	#Science
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_resource = {
+				type = tungsten
+				amount = 150
+				state = 171
+			}
+		}
+	}	
+	focus = {
+		id = spr_mining_expansion
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = spr_galacia_tungsten }
+		x = 2
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_resource = {
+				type = aluminium
+				amount = 75
+				state = 41
+			}		
+			add_resource = {
+				type = steel
+				amount = 40
+				state = 172
+			}	
+			add_resource = {
+				type = steel
+				amount = 50
+				state = 166
+			}				
+		}
+	}		
 	focus = {
 		id = spr_science_focus
 		icon = GFX_focus_research
 		prerequisite = { focus = spr_northafrican_arms focus = spr_spanish_arms }
 
-		x = 2
+		x = 4
 		y = 3
 		cost = 10
 
@@ -400,7 +444,7 @@ focus_tree = {
 		id = spr_african_civ
 		icon = GFX_goal_generic_construct_civ_factory
 		prerequisite = { focus =  spr_spanish_infra }
-		x = 2
+		x = 0
 		y = 1
 		cost = 10
 
@@ -446,7 +490,7 @@ focus_tree = {
 		id = spr_northafrican_arms
 		icon = GFX_goal_generic_construct_mil_factory
 		prerequisite = { focus = spr_african_civ }
-		x = 2
+		x = 0
 		y = 2
 		cost = 10
 
@@ -631,7 +675,7 @@ focus_tree = {
 
 	focus = {
 		id = spr_invite_germans
-		icon = GFX_goal_support_fascism
+		icon = GFX_goal_molotov_ribbentrop_pact
 		prerequisite = { focus = spr_modernization_effort focus = spr_special_forces}
 		mutually_exclusive = { focus = spr_engage_soviets }
 		
@@ -710,7 +754,7 @@ focus_tree = {
 		prerequisite = { focus = spr_army_industry }
 		prerequisite = { focus = spr_tactical_advances }
 		x = 7
-		y = 5
+		y = 4
 		cost = 10
 
 		available_if_capitulated = no
@@ -719,6 +763,7 @@ focus_tree = {
 			add_tech_bonus = {
 				name = fighter_bonus
 				bonus = 0.5
+				ahead_reduction = 1
 				uses = 1
 				technology = early_fighter
 				technology = fighter1
@@ -733,6 +778,7 @@ focus_tree = {
 				bonus = 0.5
 				uses = 1
 				category = armor
+				ahead_reduction = 1
 			}
 		}
 	}
@@ -742,8 +788,8 @@ focus_tree = {
 		icon = GFX_focus_research
 		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets}
 
-		x = 4
-		y = 3
+		x = 5
+		y = 4
 		cost = 10
 
 		available_if_capitulated = no
@@ -850,7 +896,7 @@ focus_tree = {
 		id = spr_air_bases
 		icon = GFX_goal_generic_build_airforce
 	 	prerequisite = { focus = spr_rif_lessons }
-		x = 10
+		x = 9
 		y = 1
 		cost = 10
 
@@ -870,20 +916,10 @@ focus_tree = {
 			}
 		}
 
-		complete_tooltip = {
-			air_experience = 25
-			every_state = {
-				add_building_construction = {
-					type = air_base
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-
 		completion_reward = {
 			random_owned_controlled_state = {
 				limit = {
+					is_on_continent = europe
 					free_building_slots = {
 						building = air_base
 						size > 1
@@ -910,6 +946,7 @@ focus_tree = {
 			}
 			random_owned_controlled_state = {
 				limit = {
+					is_on_continent = europe
 					free_building_slots = {
 						building = air_base
 						size > 1
@@ -960,7 +997,13 @@ focus_tree = {
 				name = SPR_fighter_focus
 				bonus = 0.5
 				uses = 2
-				category = light_fighter
+				technology = early_fighter
+				technology = fighter1
+				technology = fighter2
+				technology = fighter3
+				technology = heavy_fighter1
+				technology = heavy_fighter2
+				technology = heavy_fighter3
 			}			
 		}
 	}
@@ -981,8 +1024,97 @@ focus_tree = {
 				bonus = 0.5
 				uses = 2
 				category = tactical_bomber
-				category = cas_bomber
+				technology = strategic_bomber1
+				technology = strategic_bomber2
+				technology = strategic_bomber3
 			}			
+		}
+	}
+	focus = {
+		id = spr_air_doctrine2
+		icon = GFX_goal_generic_radar
+		prerequisite = { focus = spr_air_tech_bomber focus = spr_air_tech_fighter}
+		x = 10
+		y = 5
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			air_experience = 25
+			add_tech_bonus = {
+				name = spr_air_doc
+				bonus = 0.5
+				uses = 1
+				category = air_doctrine
+			}			
+			add_tech_bonus = {
+				name = spr_air_doc
+				bonus = 0.5
+				uses = 1
+				category = radar_tech
+			}				
+		}
+	}
+	focus = {
+		id = spr_air_rockets
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = spr_knowledge_sharing }
+		prerequisite = { focus = spr_air_doctrine2 }
+		x = 5
+		y = 6
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = bomber_focus
+				bonus = 0.5
+				uses = 2
+				category = rocketry
+				category = jet_technology
+			}			
+		}
+	}	
+	focus = {
+		id = spr_air_cas
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = spr_air_doctrine2 }
+		x = 9
+		y = 6
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAS_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				category = cas_bomber
+			}
+		}
+	}
+	focus = {
+		id = spr_air_naval
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = spr_air_doctrine2 }
+		x = 11
+		y = 6
+		cost = 10
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = nav_bomber_bonus
+				bonus = 0.5
+				ahead_reduction = 1
+				uses = 1
+				category = naval_bomber
+			}
 		}
 	}
 
@@ -990,7 +1122,7 @@ focus_tree = {
 	focus = {
 		id = spr_new_armada
 		icon = GFX_goal_generic_build_navy
-		x = 17
+		x = 12
 		y = 0
 		cost = 10
 
@@ -1089,7 +1221,7 @@ focus_tree = {
 		id = spr_naval_studies
 		icon = GFX_goal_generic_propaganda
 		prerequisite = { focus = spr_new_armada }
-		x = 18
+		x = 12
 		y = 1
 		cost = 10
 
@@ -1107,7 +1239,7 @@ focus_tree = {
 		icon = GFX_focus_wonderweapons
 		prerequisite = { focus = spr_science_focus }
 		prerequisite = { focus = spr_knowledge_sharing }
-		x = 3
+		x = 4
 		y = 5
 		cost = 10
 
@@ -1119,22 +1251,175 @@ focus_tree = {
 				bonus = 0.5
 				uses = 2
 				category = nuclear
-				category = rocketry
 			}
 		}
 	}		
 
 	#Political focus
 	focus = {
-		id = spr_heal_wounds
-		icon = GFX_goal_generic_propaganda
-		available = {
-			NOT = { has_government = democratic }
-			has_war = no
+		id = spr_terror_red
+		icon = GFX_goal_generic_political_pressure
+		available ={
+			OR = { has_government = fascism
+				has_government = communism
+			}
+		}
+		x = 16
+		y = 0
+		cost = 10
+
+		available_if_capitulated = no
+
+		complete_tooltip = {
+			if = { 
+				limit = {
+					SPR = {
+						has_government = communism
+						has_government = neutrality
+						has_government = democratic
+					}	
+				}
+				add_ideas = SPR_red_terror
+			}
+			if = { 
+				limit = {
+					SPR = {
+						has_government = fascist
+					}	
+				}
+				add_ideas = SPA_white_terror
+			}
 		}
 
-		x = 20
-		y = 6
+		completion_reward = {
+			add_political_power = 150
+			if = { 
+				limit = {
+					SPR = {
+						has_government = communism
+						has_government = neutrality
+						has_government = democratic
+					}	
+				}
+				add_ideas = SPR_red_terror
+			}
+			if = { 
+				limit = {
+					SPR = {
+						has_government = fascist
+					}	
+				}
+				add_ideas = SPA_white_terror
+			}
+		}
+	}
+
+	focus = {
+		id = spr_pol_axis
+		icon = GFX_goal_support_fascism
+		available = {
+			has_government = fascism
+		}
+		mutually_exclusive = { focus = spr_pol_soviet focus = spr_pol_found_own}
+		prerequisite = {focus = spr_terror_red}
+
+		x = 18
+		y = 1
+		cost = 10
+
+		available_if_capitulated = no
+		completion_reward = {
+			add_opinion_modifier = { target = GER modifier = axis_leanings_focus }
+			GER = {
+				add_opinion_modifier = { target = SPR modifier = axis_leanings_focus }
+			}
+		}
+
+	}
+	focus = {
+		id = spr_pol_soviet
+		icon = GFX_goal_support_communism
+		available = {
+			has_government = communism
+		}
+		mutually_exclusive = { focus = spr_pol_axis focus = spr_pol_found_own}
+		prerequisite = {focus = spr_terror_red}
+
+		x = 14
+		y = 1
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_opinion_modifier = { target = SOV modifier = axis_leanings_focus }
+			SOV = {
+				add_opinion_modifier = { target = SPR modifier = axis_leanings_focus }
+			}
+		}
+	}
+	focus = {
+		id = spr_pol_found_own
+		icon = GFX_goal_generic_major_alliance
+		available = {
+			is_in_faction = no
+			is_puppet = no
+		}
+		mutually_exclusive = { focus = spr_pol_axis focus = spr_pol_soviet}
+		prerequisite = {focus = spr_terror_red}
+		x = 16
+		y = 1
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = "daitoa_kyoeiken"
+			}
+			add_political_power = 150
+			hidden_effect = {
+				news_event = { hours = 6 id = news.211}
+			}
+		}
+	}
+	focus = {
+		id = spr_volunteers_mex
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet}
+		x = 14
+		y = 2
+		cost = 5
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}
+	focus = {
+		id = spr_volunteers_ven
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_axis}
+		x = 18
+		y = 2
+		cost = 5
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_unification
+		icon = GFX_goal_generic_propaganda
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
+		available = { has_war = no }
+		x = 16
+		y = 2
 		cost = 10
 
 		available_if_capitulated = no
@@ -1145,37 +1430,29 @@ focus_tree = {
 	}
 
 	focus = {
-		id = spr_terror_red
-		icon = GFX_goal_generic_political_pressure
-		available ={
-			OR = { has_government = fascism
-				has_government = communism
-			}
-		}
-		x = 13
-		y = 0
+		id = spr_heal_wounds
+		icon = GFX_goal_generic_propaganda
+		prerequisite = {focus = spr_unification}
+		x = 16
+		y = 4
 		cost = 10
 
-		available_if_capitulated = yes
-
-		complete_tooltip = {
-			add_ideas = SPR_red_terror
-		}
+		available_if_capitulated = no
 
 		completion_reward = {
-			add_ideas = SPR_red_terror
+			#conscription = 0.005
 		}
 	}
 
 	focus = {
-		id = spr_comm_portugal_war
+		id = spr_portugal_war
 		icon = GFX_goal_generic_political_pressure
-		prerequisite = { focus = spr_terror_red }
-		x = 12
-		y = 7
+		prerequisite = {focus = spr_unification}
+		mutually_exclusive = {focus = spr_portugal_friend}
+		x = 13
+		y = 3
 		cost = 10
-
-		available_if_capitulated = yes
+		available_if_capitulated = no
 
 		completion_reward = {
 			create_wargoal = {
@@ -1185,5 +1462,40 @@ focus_tree = {
 			}
 		}
 	}
+	focus = {
+		id = spr_portugal_friend
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = {focus = spr_unification}
+		mutually_exclusive = { focus = spr_portugal_war }
+		x = 15
+		y = 3
+		cost = 10
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = POR
+				generator = { 112 179 180 } # lisbon, porto, beja
+			}
+		}
+	}	
+	focus = {
+		id = spr_seize_gibraltar
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = {focus = spr_portugal_war focus = spr_portugal_friend}
+		x = 14
+		y = 4
+		cost = 10
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = POR
+				generator = { 112 179 180 } # lisbon, porto, beja
+			}
+		}
+	}	
 
 }
