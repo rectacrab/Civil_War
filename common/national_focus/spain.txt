@@ -1263,7 +1263,7 @@ focus_tree = {
 		}
 		x = 16
 		y = 0
-		cost = 10
+		cost = 5
 
 		available_if_capitulated = no
 
@@ -1352,7 +1352,7 @@ focus_tree = {
 		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
 		available = { has_war = no }
 		x = 15
-		y = 2
+		y = 3
 		cost = 10
 
 		available_if_capitulated = no
@@ -1368,7 +1368,7 @@ focus_tree = {
 		prerequisite = {focus = spr_unification}
 		mutually_exclusive = {focus = spr_portugal_friend}
 		x = 13
-		y = 3
+		y = 4
 		cost = 10
 		available_if_capitulated = no
 
@@ -1386,7 +1386,7 @@ focus_tree = {
 		prerequisite = {focus = spr_unification}
 		mutually_exclusive = { focus = spr_portugal_war }
 		x = 15
-		y = 3
+		y = 4
 		cost = 10
 		available_if_capitulated = no
 
@@ -1400,8 +1400,8 @@ focus_tree = {
 		id = spr_seize_gibraltar
 		icon = GFX_goal_generic_more_territorial_claims
 		prerequisite = {focus = spr_portugal_war focus = spr_portugal_friend}
-		x = 14
-		y = 4
+		x = 13
+		y = 5
 		cost = 10
 		available_if_capitulated = no
 
@@ -1412,11 +1412,33 @@ focus_tree = {
 
 	#mediterranian, france & italy.
 	focus = {
+		id = spr_right_rhetoric
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_axis}
+		mutually_exclusive = { focus = spr_leftist_rhetoric }
+		available = {
+			has_government = fascism 
+		}
+
+		x = 23
+		y = 2
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		#add italy approval
+			YUG = {
+				add_ideas = nationalism
+			}
+		}
+	}		
+	focus = {
 		id = spr_pyranese_line
 		icon = GFX_goal_generic_construct_military
-		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
-		x = 22
-		y = 2
+		prerequisite = {focus = spr_right_rhetoric} 
+		x = 23
+		y = 3
 		cost = 10
 		available_if_capitulated = no
 
@@ -1491,25 +1513,144 @@ focus_tree = {
 		}
 	}		
 	focus = {
-		id = spr_french_africa
-		icon = GFX_goal_generic_military_deal
+		id = spr_italian_friendship
+		icon = GFX_goal_generic_demand_territory
 		prerequisite = {focus = spr_pyranese_line}
-		mutually_exclusive = { focus = spr_french_revolution}
-		x = 21
-		y = 3
+		available = {
+			has_government = fascism 
+		}
+
+		x = 23
+		y = 4
 		cost = 10
 
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			ITA = {
+				
+			}
+		}
+	}		
+	focus = {
+		id = spr_french_africa
+		icon = GFX_goal_generic_military_deal
+		prerequisite = {focus = spr_italian_friendship}
+		x = 23
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+		#ultimatum event.
+			
 		}
 	}	
 	focus = {
-		id = spr_french_revolution
+		id = spr_leftist_rhetoric
 		icon = GFX_goal_generic_demand_territory
-		prerequisite = {focus = spr_pyranese_line}
-		mutually_exclusive = { focus = spr_french_africa }
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet }
+		mutually_exclusive = { focus = spr_right_rhetoric }
+		available = {
+			has_government = communism 
+		}
+
+		x = 21
+		y = 2
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			FRA = {
+				add_ideas = internationalism
+			}
+		}
+	}			
+	focus = {
+		id = spr_coastal_forts
+		icon = GFX_goal_generic_construct_military
+		prerequisite = {focus = spr_leftist_rhetoric} 
+		x = 21
+		y = 3
+		cost = 10
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = spr_pyranese_line_forts
+			172 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3737
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3931
+						instant_build = yes
+					}		
+				}
+			}
+			166 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 11838
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 915
+						instant_build = yes
+					}	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 899
+						instant_build = yes
+					}	
+				}
+			}
+			165 = {
+				hidden_effect = {	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3899
+						instant_build = yes
+					}		
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3898
+						instant_build = yes
+					}	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 11779
+						instant_build = yes
+					}			
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 9824
+						instant_build = yes
+					}
+				}
+			}			
+		}
+	}		
+	focus = {
+		id = spr_french_friendship
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = {focus = spr_coastal_forts}
 		available = {
 			NOT = {
 					FRA = {
@@ -1523,48 +1664,6 @@ focus_tree = {
 				has_government = communism 
 			}
 		}
-		x = 23
-		y = 3
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_manpower = +80000
-		}
-	}		
-	focus = {
-		id = spr_french_befriend
-		icon = GFX_goal_generic_dangerous_deal
-		prerequisite = {focus = spr_french_revolution }
-		x = 24
-		y = 4
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_manpower = +80000
-		}
-	}	
-	focus = {
-		id = spr_italy_war
-		icon = GFX_goal_generic_occupy_states_ongoing_war
-		prerequisite = {focus = spr_french_befriend }
-		x = 24
-		y = 5
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_manpower = +80000
-		}
-	}		
-	focus = {
-		id = spr_war_on_france
-		icon = GFX_goal_generic_major_war
-		prerequisite = {focus = spr_french_africa }
 		x = 21
 		y = 4
 		cost = 10
@@ -1572,7 +1671,23 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			FRA = {
+				
+			}
+		}
+	}		
+	focus = {
+		id = spr_italy_war
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = {focus = spr_french_friendship }
+		x = 21
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			#demand sardinia
 		}
 	}		
 
@@ -1595,6 +1710,7 @@ focus_tree = {
 		id = spr_venezuela_friendship
 		icon = GFX_goal_generic_army_doctrines
 		prerequisite = {focus = spr_volunteers_americas}
+		available = {has_government = fascism}
 		x = 17
 		y = 3
 		cost = 10
@@ -1602,7 +1718,17 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			VEN = {
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				add_ideas = nationalism
+			}
 		}
 	}	
 	focus = {
@@ -1616,7 +1742,40 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			CUB = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}					
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}
 		}
 	}		
 	focus = {
@@ -1630,7 +1789,40 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+				MEX = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}
 		}
 	}		
 	focus = {
@@ -1646,7 +1838,83 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			GUA = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}					
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}
+			COL = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}					
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}			
+			ELS = {
+				#add_ideas = fascist_influence
+			}	
+			PRU = {
+				#add_ideas = fascist_influence
+			}				
+			DOM = {
+				#add_ideas = fascist_influence
+			}	
 		}
 	}	
 	focus = {
@@ -1662,7 +1930,83 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			GUA = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}					
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}
+			COL = { 
+				hidden_effect = {
+					remove_ideas = {
+						american_protection_drift_democratic
+						american_protection_defence_democratic
+						american_influence_drift_democratic
+						american_influence_defence_democratic
+					}
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = fascism
+						}
+					}
+					add_ideas = nationalism
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.15
+					}					
+				}
+				if = {
+					limit = {
+						SPR = {
+							has_government = communism
+						}
+					}
+					add_ideas = internationalism
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}					
+				}
+			}			
+			ARG = {
+				add_ideas = internationalism
+			}	
+			NIC = {
+				add_ideas = internationalism
+			}				
+			PAR = {
+				add_ideas = internationalism
+			}	
 		}
 	}		
 	focus = {
@@ -1691,7 +2035,11 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			add_manpower = +80000
+			create_wargoal = {
+				type = take_state_focus
+				target = USA
+				generator = { 112 179 180 } # lisbon, porto, beja
+			}
 		}
 	}		
 }

@@ -17,50 +17,10 @@ ideas = {
 
 			modifier = {
 				ai_get_ally_desire_factor = -50
-				conscription_factor = -0.1
-				join_faction_tension = 0.5
-			}
-		}
-
-		SPA_recovering_from_civil_war_minor = {
-
-			picture = FRA_matignon_agreements
-
-			allowed = {
-				original_tag = SPR
-				has_government = fascism
-			}
-
-			allowed_civil_war = {
-				always = no
-			}
-
-			modifier = {
-				ai_get_ally_desire_factor = -10
 				conscription_factor = -0.05
 				join_faction_tension = 0.5
 			}
-		}		
-
-		SPA_recovering_from_civil_war_major = {
-
-			picture = FRA_matignon_agreements
-
-			allowed = {
-				original_tag = SPR
-				has_government = fascism
-			}
-
-			allowed_civil_war = {
-				always = no
-			}
-
-			modifier = {
-				ai_get_ally_desire_factor = -90
-				conscription_factor = -0.25
-				join_faction_tension = 0.5
-			}
-		}		
+		}	
 	}
 
 	political_advisor = {
