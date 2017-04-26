@@ -689,6 +689,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
+			add_manpower = 10000
 			army_experience = 10
 			add_tech_bonus = {
 				name = op_dest_bonus
@@ -717,7 +718,7 @@ focus_tree = {
 		
 		completion_reward = {
 			army_experience = 10
-
+			add_manpower = 4000
 			add_tech_bonus = {
 				name = armor_bonus
 				bonus = 0.5
@@ -1058,7 +1059,7 @@ focus_tree = {
 	}
 	focus = {
 		id = spr_air_rockets
-		icon = GFX_goal_generic_occupy_start_war
+		icon = GFX_focus_rocketry
 		prerequisite = { focus = spr_knowledge_sharing }
 		prerequisite = { focus = spr_air_doctrine2 }
 		x = 5
@@ -1079,7 +1080,7 @@ focus_tree = {
 	}	
 	focus = {
 		id = spr_air_cas
-		icon = GFX_goal_generic_occupy_start_war
+		icon = GFX_goal_generic_air_fighter
 		prerequisite = { focus = spr_air_doctrine2 }
 		x = 9
 		y = 6
@@ -1099,7 +1100,7 @@ focus_tree = {
 	}
 	focus = {
 		id = spr_air_naval
-		icon = GFX_goal_generic_occupy_start_war
+		icon = GFX_goal_generic_air_naval_bomber
 		prerequisite = { focus = spr_air_doctrine2 }
 		x = 11
 		y = 6
@@ -1232,8 +1233,6 @@ focus_tree = {
 		}
 	}	
 
-
-	#improvement & science tree	
 	focus = {
 		id = spr_nuclear_research
 		icon = GFX_focus_wonderweapons
@@ -1270,47 +1269,9 @@ focus_tree = {
 
 		available_if_capitulated = no
 
-		complete_tooltip = {
-			if = { 
-				limit = {
-					SPR = {
-						has_government = communism
-						has_government = neutrality
-						has_government = democratic
-					}	
-				}
-				add_ideas = SPR_red_terror
-			}
-			if = { 
-				limit = {
-					SPR = {
-						has_government = fascist
-					}	
-				}
-				add_ideas = SPA_white_terror
-			}
-		}
-
 		completion_reward = {
-			add_political_power = 150
-			if = { 
-				limit = {
-					SPR = {
-						has_government = communism
-						has_government = neutrality
-						has_government = democratic
-					}	
-				}
-				add_ideas = SPR_red_terror
-			}
-			if = { 
-				limit = {
-					SPR = {
-						has_government = fascist
-					}	
-				}
-				add_ideas = SPA_white_terror
-			}
+			add_political_power = 150	
+			add_ideas = { SPR_terror }
 		}
 	}
 
@@ -1377,7 +1338,7 @@ focus_tree = {
 			set_rule = { can_create_factions = yes }
 			if = {
 				limit = { is_in_faction = no }
-				create_faction = "daitoa_kyoeiken"
+				create_faction = spr_own_faction
 			}
 			add_political_power = 150
 			hidden_effect = {
@@ -1385,34 +1346,8 @@ focus_tree = {
 			}
 		}
 	}
-	focus = {
-		id = spr_volunteers_mex
-		icon = GFX_goal_generic_soviet_construction
-		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet}
-		x = 14
-		y = 2
-		cost = 5
 
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_manpower = +80000
-		}
-	}
-	focus = {
-		id = spr_volunteers_ven
-		icon = GFX_goal_generic_demand_territory
-		prerequisite = {focus = spr_pol_found_own focus = spr_pol_axis}
-		x = 18
-		y = 2
-		cost = 5
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			add_manpower = +80000
-		}
-	}	
+	#iberian focuses.
 	focus = {
 		id = spr_unification
 		icon = GFX_goal_generic_propaganda
@@ -1425,25 +1360,11 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			#conscription = 0.005
+			custom_effect_tooltip = { spr_unification_effect }
+			remove_ideas = { SPR_terror}
+			add_ideas = { SPR_terror_complete }
 		}
 	}
-
-	focus = {
-		id = spr_heal_wounds
-		icon = GFX_goal_generic_propaganda
-		prerequisite = {focus = spr_unification}
-		x = 16
-		y = 4
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			#conscription = 0.005
-		}
-	}
-
 	focus = {
 		id = spr_portugal_war
 		icon = GFX_goal_generic_political_pressure
@@ -1464,7 +1385,7 @@ focus_tree = {
 	}
 	focus = {
 		id = spr_portugal_friend
-		icon = GFX_goal_generic_political_pressure
+		icon = GFX_goal_generic_improve_relations
 		prerequisite = {focus = spr_unification}
 		mutually_exclusive = { focus = spr_portugal_war }
 		x = 15
@@ -1473,16 +1394,12 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			create_wargoal = {
-				type = take_state_focus
-				target = POR
-				generator = { 112 179 180 } # lisbon, porto, beja
-			}
+
 		}
 	}	
 	focus = {
 		id = spr_seize_gibraltar
-		icon = GFX_goal_generic_political_pressure
+		icon = GFX_goal_generic_more_territorial_claims
 		prerequisite = {focus = spr_portugal_war focus = spr_portugal_friend}
 		x = 14
 		y = 4
@@ -1490,12 +1407,104 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			create_wargoal = {
-				type = take_state_focus
-				target = POR
-				generator = { 112 179 180 } # lisbon, porto, beja
-			}
+
 		}
 	}	
 
+	#mediterranian, france & italy.
+	focus = {
+		id = spr_pyranese_line
+		icon = GFX_goal_generic_construct_military
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
+		x = 20
+		y = 2
+		cost = 10
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = spr_pyranese_line_forts
+			172 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3737
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3931
+						instant_build = yes
+					}		
+				}
+			}
+			166 = {
+				hidden_effect = {
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 11838
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 915
+						instant_build = yes
+					}	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 899
+						instant_build = yes
+					}	
+				}
+			}
+			165 = {
+				hidden_effect = {	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3899
+						instant_build = yes
+					}		
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 3898
+						instant_build = yes
+					}	
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 11779
+						instant_build = yes
+					}			
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 9824
+						instant_build = yes
+					}
+				}
+			}			
+		}
+	}		
+
+	#american expansion
+	focus = {
+		id = spr_volunteers_americas
+		icon = GFX_goal_generic_soviet_construction
+		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
+		x = 18
+		y = 2
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
 }

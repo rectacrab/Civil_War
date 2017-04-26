@@ -64,9 +64,7 @@ ideas = {
 		}	
 
 
-
-		SPR_red_terror = {
-
+		SPR_terror = {
 			picture = GFX_goal_anti_comintern_pact
 
 			allowed = {
@@ -78,15 +76,25 @@ ideas = {
 			}
 
 			modifier = {
-				unity_factor = 0.15
+				unity_factor = 0.05
 				conscription = -0.02
 				foreign_subversive_activites = -0.50
 			}
 		}
 
+		SPR_terror_complete = {
+			picture = GFX_goal_anti_comintern_pact
 
+			allowed_civil_war = {
+				always = yes
+			}
 
-
+			modifier = {
+				unity_factor = 0.15
+				conscription = -0.01
+				foreign_subversive_activites = -0.40
+			}
+		}		
 	}
 
 	political_advisor = {
