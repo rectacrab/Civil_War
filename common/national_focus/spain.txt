@@ -1130,7 +1130,6 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			navy_experience = 50
 			random_owned_controlled_state = {
 				limit = {
 					dockyard > 0
@@ -1208,13 +1207,6 @@ focus_tree = {
 					}
 				}				
 			}
-
-			add_tech_bonus = {
-				name = naval_doctrine_bonus
-				bonus = 0.5
-				uses = 1
-				category = naval_doctrine
-			}
 		}
 	}	
 
@@ -1229,7 +1221,13 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-			#conscription = 0.005
+			navy_experience = 50
+			add_tech_bonus = {
+				name = naval_doctrine_bonus
+				bonus = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
 		}
 	}	
 
@@ -1353,21 +1351,20 @@ focus_tree = {
 		icon = GFX_goal_generic_propaganda
 		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
 		available = { has_war = no }
-		x = 16
+		x = 15
 		y = 2
 		cost = 10
 
 		available_if_capitulated = no
 
 		completion_reward = {
-			custom_effect_tooltip = { spr_unification_effect }
 			remove_ideas = { SPR_terror}
 			add_ideas = { SPR_terror_complete }
 		}
 	}
 	focus = {
 		id = spr_portugal_war
-		icon = GFX_goal_generic_political_pressure
+		icon = GFX_goal_generic_territory_or_war
 		prerequisite = {focus = spr_unification}
 		mutually_exclusive = {focus = spr_portugal_friend}
 		x = 13
@@ -1394,7 +1391,9 @@ focus_tree = {
 		available_if_capitulated = no
 
 		completion_reward = {
-
+			diplomatic_relation = { country = POR relation = non_aggression_pact }
+			add_opinion_modifier = { target = POR modifier = MR_pact }
+			add_named_threat = { threat = -5 name = GER_war_with_france_threat }
 		}
 	}	
 	focus = {
@@ -1416,7 +1415,7 @@ focus_tree = {
 		id = spr_pyranese_line
 		icon = GFX_goal_generic_construct_military
 		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
-		x = 20
+		x = 22
 		y = 2
 		cost = 10
 		available_if_capitulated = no
@@ -1491,11 +1490,96 @@ focus_tree = {
 			}			
 		}
 	}		
+	focus = {
+		id = spr_french_africa
+		icon = GFX_goal_generic_military_deal
+		prerequisite = {focus = spr_pyranese_line}
+		mutually_exclusive = { focus = spr_french_revolution}
+		x = 21
+		y = 3
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_french_revolution
+		icon = GFX_goal_generic_demand_territory
+		prerequisite = {focus = spr_pyranese_line}
+		mutually_exclusive = { focus = spr_french_africa }
+		available = {
+			NOT = {
+					FRA = {
+						has_government = communism 
+					} 
+			}
+			has_government = communism 
+		}
+		bypass = { 
+			FRA = { 
+				has_government = communism 
+			}
+		}
+		x = 23
+		y = 3
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
+	focus = {
+		id = spr_french_befriend
+		icon = GFX_goal_generic_dangerous_deal
+		prerequisite = {focus = spr_french_revolution }
+		x = 24
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_italy_war
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = {focus = spr_french_befriend }
+		x = 24
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
+	focus = {
+		id = spr_war_on_france
+		icon = GFX_goal_generic_major_war
+		prerequisite = {focus = spr_french_africa }
+		x = 21
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
 
 	#american expansion
 	focus = {
 		id = spr_volunteers_americas
-		icon = GFX_goal_generic_soviet_construction
+		icon = GFX_goal_generic_military_sphere
 		prerequisite = {focus = spr_pol_found_own focus = spr_pol_soviet focus = spr_pol_axis}
 		x = 18
 		y = 2
@@ -1507,4 +1591,107 @@ focus_tree = {
 			add_manpower = +80000
 		}
 	}	
+	focus = {
+		id = spr_venezuela_friendship
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = {focus = spr_volunteers_americas}
+		x = 17
+		y = 3
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_cuban_influence
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = {focus = spr_volunteers_americas}	
+		x = 19
+		y = 3
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
+	focus = {
+		id = spr_mexican_politics
+		icon = GFX_goal_generic_propaganda
+		prerequisite = {focus = spr_cuban_influence focus = spr_venezuela_friendship}
+		x = 18
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
+	focus = {
+		id = spr_influence_fascist
+		icon = GFX_goal_anschluss
+		prerequisite = {focus = spr_mexican_politics}
+		mutually_exclusive = { focus = spr_influence_communist}
+		available = {has_government = fascism}
+		x = 19
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_influence_communist
+		icon = GFX_goal_generic_alliance
+		prerequisite = {focus = spr_mexican_politics}
+		mutually_exclusive = { focus = spr_influence_fascist}
+		available = {has_government = communism}
+		x = 17
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
+	focus = {
+		id = spr_freedom_phillipines
+		icon = GFX_goal_generic_political_pressure
+		prerequisite = {focus = spr_mexican_politics}
+		prerequisite = {focus = spr_portugal_war focus = spr_portugal_friend}
+		x = 15
+		y = 5
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}	
+	focus = {
+		id = spr_war_on_usa
+		icon = GFX_goal_generic_forceful_treaty
+		prerequisite = {focus = spr_influence_communist focus = spr_influence_fascist}
+		x = 18
+		y = 6
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_manpower = +80000
+		}
+	}		
 }
