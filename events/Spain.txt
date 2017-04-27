@@ -325,14 +325,12 @@ country_event = {
 	}
 }
 
-# Election of 1936
+# Election of 1936 - changed this to just be a prompt to accept. The war is inevitable. 
 country_event = {
 	id = spain.9
 	title = spain.9.t
 	desc = spain.9.d
 	picture = GFX_report_event_election_vote
-	
-	is_triggered_only = yes
 
 	fire_only_once = yes
 
@@ -352,15 +350,15 @@ country_event = {
 	}
 
 	# Falange
-	option = {
-		ai_chance = { factor = 0 }
-		name = spain.9.b
-		set_politics = {
-			ruling_party = fascism
-			elections_allowed = no
-		}
-		set_country_flag = SPR_communist_civil_war
-	}
+	#option = {
+	#	ai_chance = { factor = 0 }
+	#	name = spain.9.b
+	#	set_politics = {
+	#		ruling_party = fascism
+	#		elections_allowed = no
+	#	}
+	#	set_country_flag = SPR_communist_civil_war
+	#}
 }
 
 # Spanish Civil War if Franco is elected
@@ -465,5 +463,190 @@ country_event = {
 			
 		}
 		custom_effect_tooltip = republicans_chosen
+	}
+}
+
+# Taking a side after election
+country_event = {
+	id = spain.11
+	title = spain.11.t
+	desc = spain.11.d
+	picture = GFX_report_event_election_vote
+
+	fire_only_once = yes
+
+	trigger = {
+		tag = SPR
+		date > 1936.2.16 # Trigger at some point after 1936 elections
+		NOT = {
+			has_civil_war = yes
+		}
+	}
+	mean_time_to_happen = {
+		days = 25 #before uprising, most likely.
+	}	
+
+	# Popular Front
+	option = {
+		ai_chance = { factor = 0.2 }
+		name = spain.11.a
+		set_country_flag = SPR_released_guns
+	}
+
+	# Don't release guns
+	option = {
+		ai_chance = { factor = 0.8 }
+		name = spain.11.b
+	}
+}
+
+#Demanding portugal
+country_event = {
+	id = spain.12
+	title = spain.12.t
+	desc = spain.12.d
+	picture = GFX_report_event_german_troops
+	
+	is_triggered_only = yes
+
+	# join
+	option = {
+		ai_chance = { factor = 0.9 }
+		name = spain.12.a
+		SPR = { country_event = { id = spain.13 days = 1 }}
+	}
+
+	# remain independent
+	option = {
+		ai_chance = { factor = 0.1 }
+		name = spain.12.b
+		SPR = { country_event = { id = spain.14 days = 1 } }	
+	}
+}
+
+# portgual says yes
+country_event = {
+	id = spain.13
+	title = spain.13.t
+	desc = spain.13.d
+	picture = GFX_report_event_german_troops
+
+	is_triggered_only = yes
+
+	#Gain territories
+	option = {
+		name = spain.13.a
+		SPR = {
+			annex_country = { target = POR transfer_troops = yes}
+			add_state_core = 179
+			add_state_core = 112
+			add_state_core = 181
+			add_state_core = 180
+			add_state_core = 540
+			add_state_core = 544
+			add_named_threat = { threat = 5 name = spain.13.t }
+		}
+		hidden_effect = {
+			news_event = { hours= 6 id = news.301 }
+		}
+	}
+}
+
+# portugal says no
+country_event = {
+	id = spain.14
+	title = spain.14.t
+	desc = spain.14.d
+	picture = GFX_report_event_german_troops
+
+	is_triggered_only = yes
+
+	#get claims
+	option = {
+		name = spain.14.a
+		SPR = {
+			create_wargoal = {
+				type = take_state_focus
+				target = POR
+				generator = { 112 179 180 181 } # lisbon, porto, beja
+			}
+
+			add_named_threat = { threat = 1 name = spain.14.t }
+		}
+	}
+}
+
+# Demand gibraltar
+country_event = {
+	id = spain.15
+	title = spain.15.t
+	desc = spain.15.d
+	picture = GFX_news_event_052
+
+	is_triggered_only = yes
+
+	#cede
+	option = {
+		name = spain.15.a
+		ai_chance = { factor = 0.5 }
+		SPR = { country_event = { id = spain.16 days = 1} }	
+	}
+
+	option = {
+		name = spain.15.b
+		ai_chance = { factor = 0.5 }
+		SPR = { country_event = { id = spain.17 days = 1 } }	
+	}	
+}
+
+#UK gives gibraltar
+country_event = {
+	id = spain.16
+	title = spain.16.t
+	desc = spain.16.d
+	picture = GFX_news_event_052
+
+	is_triggered_only = yes
+
+	#cede
+	option = {
+		name = spain.16.a
+		SPR = {
+			add_state_core = 118
+			transfer_state = 118
+			add_named_threat = { threat = 4 name = spain.16.t }
+		}
+		hidden_effect = {
+			news_event = { hours= 6 id = news.300 }
+		}
+	}
+}
+
+#UK refuses gibraltar
+country_event = {
+	id = spain.17
+	title = spain.17.t
+	desc = spain.17.d
+	picture = GFX_news_event_052
+
+	is_triggered_only = yes
+
+	#refuse
+	option = {
+		name = spain.17.a
+		118 = {
+			controller = {
+				SPR = {
+					create_wargoal = {
+					type = take_state_focus
+					target = PREV
+					generator = { 118 } #gibraltar.
+					}
+					add_named_threat = { threat = 1 name = spain.17.t }
+				}
+			}
+			
+		}
+		
 	}
 }

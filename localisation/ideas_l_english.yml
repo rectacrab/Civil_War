@@ -2449,3 +2449,7 @@
  SPR_recovering_from_civil_war_major_desc:0 "The civil war dragged on for years, leaving Spain in ruins."
  SPR_recovering_from_civil_war_minor:0 "Rapid War Recovery"
  SPR_recovering_from_civil_war_minor_desc:0 "A decisive victory in the Civil War has not diminished Spanish power."
+ SPR_small_arms:0 "Foreign Equipment"
+ SPR_small_arms_desc:0 "Foreign powers have provided us with an excess of Infantry equipment."
+ SPR_crippled_econ:0 "Government Dysfunction"
+ SPR_crippled_econ_desc:0 "Partisans within the Government is tearing the country apart." 

@@ -25,6 +25,9 @@ set_technology = {
 	transport = 1
 }
 
+add_ideas = SPR_crippled_econ
+
+
 set_politics = {
 
 	parties = {

@@ -55,13 +55,13 @@ ideas = {
 			modifier = {
 				ai_get_ally_desire_factor = -90
 				conscription_factor = -0.1
-				join_faction_tension = 0.5
+				join_faction_tension = 0.7
 			}
 		}	
 
 
 		SPR_terror = {
-			picture = GFX_goal_anti_comintern_pact
+			picture = officers_purged
 
 			allowed = {
 				always = no
@@ -79,7 +79,7 @@ ideas = {
 		}
 
 		SPR_terror_complete = {
-			picture = GFX_goal_anti_comintern_pact
+			picture = officers_purged
 
 			allowed_civil_war = {
 				always = yes
@@ -88,6 +88,46 @@ ideas = {
 			modifier = {
 				unity_factor = 0.15
 				foreign_subversive_activites = -0.40
+			}
+		}	
+
+		SPR_small_arms = {
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = yes
+			}
+
+			removal_cost = -1
+
+			picture = generic_infantry_bonus
+			
+			equipment_bonus = {
+				infantry_equipment = {
+					build_cost_ic = -0.1 instant = yes
+				}
+			}
+		}
+
+		SPR_crippled_econ = {
+			allowed = {
+				always = no
+				original_tag = SPR
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = generic_disjointed_gov
+			
+			modifier = {
+				industrial_capacity_factory = -0.25
+				industrial_capacity_dockyard = -0.25
 			}
 		}		
 	}
