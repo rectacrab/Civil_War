@@ -626,14 +626,66 @@ focus_tree = {
 
 		}
 	}
+	focus = {
+		id = spr_invite_germans
+		icon = GFX_goal_molotov_ribbentrop_pact
+		prerequisite = { focus = spr_rif_lessons }
+		mutually_exclusive = { focus = spr_engage_soviets }
+		
+		available ={
+			has_government = fascism
+		}
+		x = 6
+		y = 1
+		cost = 2
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_manpower = 10000
+			army_experience = 10
+			add_tech_bonus = {
+				name = op_dest_bonus
+				bonus = 0.5
+				uses = 1
+				category = battlefield_support_tree
+			}
+		}
+	}
+	focus = {
+		id = spr_engage_soviets
+		icon = GFX_goal_support_communism
+		prerequisite = { focus = spr_rif_lessons }
+		mutually_exclusive = { focus = spr_invite_germans }
+
+		available ={
+			has_government = communism
+		}
+		x = 8
+		y = 1
+		cost = 2
+
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			army_experience = 10
+			add_manpower = 4000
+			add_tech_bonus = {
+				name = armor_bonus
+				bonus = 0.5
+				uses = 1
+				category = armor
+			}
+		}
+	}	
 
 
 	focus = {
 		id = spr_modernization_effort
 		icon = GFX_goal_generic_small_arms
-		prerequisite = { focus = spr_rif_lessons }
+		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets }
 		x = 7
-		y = 1
+		y = 2
 		cost = 10
 
 		available_if_capitulated = yes
@@ -652,9 +704,9 @@ focus_tree = {
 	focus = {
 		id = spr_special_forces
 		icon = GFX_goal_generic_special_forces
-		prerequisite = { focus = spr_rif_lessons }
+		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets }
 		x = 5
-		y = 1
+		y = 2
 		cost = 10
 
 		available_if_capitulated = yes
@@ -673,67 +725,14 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = spr_invite_germans
-		icon = GFX_goal_molotov_ribbentrop_pact
-		prerequisite = { focus = spr_modernization_effort focus = spr_special_forces}
-		mutually_exclusive = { focus = spr_engage_soviets }
-		
-		available ={
-			has_government = fascism
-		}
-		x = 5
-		y = 2
-		cost = 2
 
-		available_if_capitulated = yes
-
-		completion_reward = {
-			add_manpower = 10000
-			army_experience = 10
-			add_tech_bonus = {
-				name = op_dest_bonus
-				bonus = 0.5
-				uses = 1
-				category = battlefield_support_tree
-			}
-		}
-	}
-
-
-	focus = {
-		id = spr_engage_soviets
-		icon = GFX_goal_support_communism
-		prerequisite = { focus = spr_modernization_effort focus = spr_special_forces }
-		mutually_exclusive = { focus = spr_invite_germans }
-
-		available ={
-			has_government = communism
-		}
-		x = 7
-		y = 2
-		cost = 2
-
-		available_if_capitulated = yes
-		
-		completion_reward = {
-			army_experience = 10
-			add_manpower = 4000
-			add_tech_bonus = {
-				name = armor_bonus
-				bonus = 0.5
-				uses = 1
-				category = armor
-			}
-		}
-	}
 
 
 #rewards for picking a side, civil war is happening or has happened.
 	focus = {
 		id = spr_tactical_advances
 		icon = GFX_goal_generic_position_armies
-		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets }
+		prerequisite = { focus = spr_special_forces focus = spr_modernization_effort}
 		x = 8
 		y = 3
 		cost = 10
@@ -807,7 +806,7 @@ focus_tree = {
 	focus = {
 		id = spr_knowledge_sharing
 		icon = GFX_focus_research
-		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets}
+		prerequisite = { focus = spr_army_industry}
 
 		x = 5
 		y = 4
@@ -824,7 +823,7 @@ focus_tree = {
 	focus = {
 		id = spr_army_industry
 		icon = GFX_goal_generic_axis_build_infantry
-		prerequisite = { focus = spr_engage_soviets focus = spr_invite_germans}
+		prerequisite = { focus = spr_special_forces focus = spr_modernization_effort}
 		x = 6
 		y = 3
 		cost = 10
@@ -916,9 +915,9 @@ focus_tree = {
 	focus = {
 		id = spr_air_bases
 		icon = GFX_goal_generic_build_airforce
-	 	prerequisite = { focus = spr_rif_lessons }
+	 	prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets }
 		x = 9
-		y = 1
+		y = 2
 		cost = 10
 
 		available_if_capitulated = yes
@@ -985,7 +984,6 @@ focus_tree = {
 		id = spr_air_doctrine
 		icon = GFX_goal_generic_air_bomber
 		prerequisite = { focus = spr_air_bases}
-		prerequisite = { focus = spr_invite_germans focus = spr_engage_soviets}
 		x = 10
 		y = 3
 		cost = 10
@@ -1143,7 +1141,7 @@ focus_tree = {
 	focus = {
 		id = spr_new_armada
 		icon = GFX_goal_generic_build_navy
-		x = 12
+		x = 11
 		y = 0
 		cost = 10
 
@@ -1234,8 +1232,8 @@ focus_tree = {
 		icon = GFX_goal_generic_navy_submarine
 		prerequisite = { focus = spr_new_armada }
 		mutually_exclusive = { focus = spr_fleet }
-		x = 13
-		y = 2
+		x = 12
+		y = 1
 		cost = 10
 
 		available_if_capitulated = no
@@ -1264,8 +1262,8 @@ focus_tree = {
 		icon = GFX_goal_generic_navy_battleship
 		prerequisite = { focus = spr_new_armada }
 		mutually_exclusive = { focus = spr_submarines }
-		x = 11
-		y = 2
+		x = 10
+		y = 1
 		cost = 10
 
 		available_if_capitulated = no

@@ -54,19 +54,19 @@ set_convoys = 150
 set_national_unity = 0.5
 
 1939.1.1 = {
-
+	remove_ideas = SPR_crippled_econ
 	add_political_power = 1198
 	
-	#generic focuses
-	complete_national_focus = army_effort
-	complete_national_focus = equipment_effort
-	complete_national_focus = motorization_effort
-	complete_national_focus = aviation_effort
-	complete_national_focus = naval_effort
-	complete_national_focus = large_navy
-	complete_national_focus = industrial_effort
-	complete_national_focus = construction_effort
-	complete_national_focus = production_effort
+	#new focuses
+	complete_national_focus = spr_rif_lessons
+	complete_national_focus = spr_invite_germans
+	complete_national_focus = spr_modernization_effort
+	complete_national_focus = spr_terror_red
+	complete_national_focus = spr_pol_found_own
+	complete_national_focus = spr_unification
+	complete_national_focus = spr_strict_neutrality
+	complete_national_focus = spr_portugal_friend
+	complete_national_focus = spr_spanish_infra
 	
 	oob = "SPA_1939"
 	load_oob = "unlock_tanks"
