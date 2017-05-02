@@ -691,7 +691,7 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-
+			army_experience = 30
 			add_tech_bonus = {
 				name = RAJ_army_motorization
 				bonus = 0.5
@@ -712,7 +712,6 @@ focus_tree = {
 		available_if_capitulated = yes
 
 		completion_reward = {
-			army_experience = 10
 			add_tech_bonus = {
 				name = special_bonus
 				bonus = 0.5
@@ -1599,12 +1598,12 @@ focus_tree = {
 
 		bypass = {
 			if = {
-				332 = { is_controlled_by = SPR }
+				118 = { is_controlled_by = SPR }
 			}
 		}
 
 		completion_reward = {
-			332 = {
+			118 = {
 				controller = {
 					country_event = { id = spain.15 days = 1}
 				}
