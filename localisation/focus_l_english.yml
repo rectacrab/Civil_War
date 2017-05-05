@@ -1927,7 +1927,7 @@
  spr_pol_soviet:0 "Align with the Comintern"
  spr_pol_soviet_desc:0 "Our Russian comrades were of great assistance during the Civil War. We should join them in the struggle against Facism & Capitalism."
  spr_pol_axis:0 "Align with the Axis"
- spr_pol_soviet_desc:0 "Axis Victory in Europe is inevitable. We should join them in their efforts!"
+ spr_pol_axis_desc:0 "Axis Victory in Europe is inevitable. We should join them in their efforts!"
  spr_pol_found_own:0 "Spain First"
  spr_pol_found_own_desc:0 "Allies, Axis, Comintern - they are all irrelevent to the future of Spain."
  spr_volunteers_americas:0 "The Old Empire"
