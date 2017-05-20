@@ -1691,48 +1691,6 @@ focus_tree = {
 		}
 	}		
 	focus = {
-		id = spr_italian_friendship
-		icon = GFX_goal_generic_military_deal
-		prerequisite = {focus = spr_pyranese_line focus = spr_coastal_forts }
-		available = {
-			has_government = fascism 
-		}
-		bypass = {
-			ITA = {
-				is_in_faction = yes
-			}
-		}
-		x = 25
-		y = 4
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			ITA = {
-				add_opinion_modifier = { target = SPR modifier = spr_fascist_brotherhood }
-			}
-		}
-	}		
-	focus = {
-		id = spr_french_africa
-		icon = GFX_goal_generic_major_war
-		prerequisite = {focus = spr_italian_friendship}
-		x = 25
-		y = 5
-		cost = 10
-
-		available_if_capitulated = no
-
-		completion_reward = {
-			create_wargoal = {
-				type = take_state_focus
-				target = FRA
-				generator = { 461 462 459 557 272 556 539}
-			}
-		}
-	}	
-	focus = {
 		id = spr_strict_neutrality
 		icon = GFX_goal_generic_demand_territory
 		prerequisite = {focus = spr_pol_found_own }
@@ -2091,19 +2049,84 @@ focus_tree = {
 		}
 	}		
 	focus = {
+		id = spr_italy_war
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = {focus = spr_pyranese_line focus = spr_coastal_forts }
+		mutually_exclusive = { focus = spr_italian_friendship }
+		x = 28
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			create_wargoal = {
+				type = take_state_focus
+				target = ITA
+				generator = { 114 115 156 117 448 449 450 451 661 662 663}
+			}
+		}
+	}
+	focus = {
+		id = spr_italian_friendship
+		icon = GFX_goal_generic_military_deal
+		prerequisite = {focus = spr_pyranese_line focus = spr_coastal_forts }
+		mutually_exclusive = { focus = spr_italy_war }
+		available = {
+			OR = {
+				AND = {
+					has_government = fascism 
+					ITA = {
+						has_government = fascism 
+					}
+				}
+				AND = {
+					has_government = communism 
+					ITA = {
+						has_government = communism 
+					}
+				}
+			}
+		}
+		x = 26
+		y = 4
+		cost = 10
+
+		available_if_capitulated = no
+
+		completion_reward = {
+			ITA = {
+				add_opinion_modifier = { target = SPR modifier = spr_fascist_brotherhood }
+			}
+
+			if = {
+				limit = {
+					ITA = {
+						is_in_faction = no
+					}				
+				}
+				add_to_faction = ITA
+			}				
+		}
+	}
+	focus = {
 		id = spr_french_friendship
 		icon = GFX_goal_generic_military_deal
 		prerequisite = {focus = spr_coastal_forts focus = spr_pyranese_line}
+		mutually_exclusive = { focus = spr_french_africa }
 		available = {
-			FRA = {
-				has_government = communism 
-			} 
-			has_government = communism 
-		}
-		bypass = { 
-			FRA = { 
-				NOT = {
+			OR = {
+				AND = {
+					has_government = fascism 
+					FRA = {
+						has_government = fascism 
+					}
+				}
+				AND = {
 					has_government = communism 
+					FRA = {
+						has_government = communism 
+					}
 				}
 			}
 		}
@@ -2117,14 +2140,24 @@ focus_tree = {
 			FRA = {
 				add_opinion_modifier = { target = SPR modifier = spr_greater_commune }
 			}
+
+			if = {
+				limit = {
+					FRA = {
+						is_in_faction = no
+					}				
+				}
+				add_to_faction = FRA
+			}	
 		}
-	}		
+	}				
 	focus = {
-		id = spr_italy_war
-		icon = GFX_goal_generic_occupy_states_ongoing_war
-		prerequisite = {focus = spr_french_friendship }
-		x = 22
-		y = 5
+		id = spr_french_africa
+		icon = GFX_goal_generic_major_war
+		prerequisite = {focus = spr_coastal_forts focus = spr_pyranese_line}
+		mutually_exclusive = { focus = spr_french_friendship }
+		x = 24
+		y = 4
 		cost = 10
 
 		available_if_capitulated = no
@@ -2132,11 +2165,11 @@ focus_tree = {
 		completion_reward = {
 			create_wargoal = {
 				type = take_state_focus
-				target = ITA
-				generator = { 114 115 156 117 448 449 450 451 661 662 663}
+				target = FRA
+				generator = { 461 462 459 557 272 556 539}
 			}
 		}
-	}		
+	}				
 
 	#american expansion
 	focus = {
