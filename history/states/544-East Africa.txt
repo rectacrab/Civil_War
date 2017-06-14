@@ -6,7 +6,7 @@ state={
 	
 	state_category = rural
 	resources = {
-		chromium = 90
+		chromium = 20
 	}
 	history={
 		owner = POR

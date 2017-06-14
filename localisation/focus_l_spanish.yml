@@ -1456,7 +1456,7 @@
  SAF_demand_madagascar:0 "Reclamar Madagascar"
  SAF_demand_madagascar_desc:0 "Debido a los dramáticos cambios de la situación en Europa, ha llegado la hora de reevaluar todo el sistema colonial. ¿Por qué debe permanecer Madagascar junto a un imperio decadente?"
  SAF_invite_soviet_advisers:0 "Invitar a consejeros soviéticos"
- SAF_invite_soviet_advisers_desc:0 "Si queremos apoyar a [SOV.GetNameDef] en su lucha para liberar a todos los trabajadores del mundo, debemos aprender de ellos y mejorar nuestro ejército."
+ SAF_invite_soviet_advisers_desc:3 "Si queremos apoyar a la Unión Soviética en su lucha para liberar a todos los trabajadores del mundo, debemos aprender de ellos y mejorar nuestro ejército."
  SAF_south_african_soviet_research_treaty:0 "Acuerdo de investigación con la URSS"
  SAF_south_african_soviet_research_treaty_desc:0 "Después de aprender tantas lecciones valiosas de nuestros amigos soviéticos, es el momento de afianzar nuestra relación firmando un tratado formal."
  SAF_anti_colonialist_crusade:0 "Cruzada anticolonizadora"
@@ -1855,6 +1855,7 @@
  scw_in_progress_tt:0 "España sufre una guerra civil."
  RAJ_navy_funding_effect:0 "Se añadirán §Y2 cruceros ligeros§! a tu armada si ya tienes la tecnología.\n"
  SOV_baltic_security_desc:0 "El Mar Báltico es nuestro patio delantero y debe ser protegido a toda costa. Debemos hacernos con Carelia para darle a Leningrado una zona de seguridad, ¡y la autonomía de Estonia es simplemente ridícula!"
+#Spain mod
 spr_rif_lessons:0 "Lecciones del Pasado"
 spr_rif_lessons_desc:0 "La insurgencia marroquí reveló defectos flagrantes en la fuerza de nuestro ejército. Hay mucho que aprender aquí."
 spr_modernization_effort:0 "Modernización del ejército"
