@@ -1896,7 +1896,7 @@ spr_spanish_civ_desc:0 "Embarquez-vous dans un programme d'industrialisation dan
 spr_spanish_arms:0 "Armures espagnoles"
 spr_spanish_arms_desc:0 "Industrialiser la campagne avec les usines militaires."
 spr_special_forces:0 "Infanterie spécialisée"
-spr_special_forces_desc:0 La guerre à venir exigera des troupes spécialisées dans certains terrains."
+spr_special_forces_desc:0 "La guerre à venir exigera des troupes spécialisées dans certains terrains."
 spr_air_bases:0 "Airbase Expansion"
 spr_air_bases_desc:0 "Avions sont venus à l'avant-garde de la guerre, alors nous devons nous préparer à une grande guerre aérienne."
 spr_tactical_advances:0 "Avances tactiques"
